@@ -1,0 +1,41 @@
+﻿@page "/"
+@using BlazorApp
+@using KYLib
+@using KYLib.GameObjectModel
+@using SkiaSharp
+@using SkiaSharp.Views.Blazor
+
+<div @onkeydown="OnKeyDown" @onkeyup="OnKeyUp" tabindex="0" style="outline:none;">
+    <SKGLView OnPaintSurface="OnPaintSurface" 
+              EnableRenderLoop="true" 
+              style="width: 1280px; height: 720px;" />
+</div>
+
+@code {
+    private GameWorld _gameWorld;
+    private readonly BlazorInputState _inputState = new();
+    private DateTime _lastTime = DateTime.Now;
+
+    protected override void OnInitialized()
+    {
+        KDEngine.Input = _inputState;
+        _gameWorld = new GameWorld(1280, 720, "KYLib Blazor");
+        GameScene.Load(_gameWorld);
+    }
+
+    private void OnKeyDown(KeyboardEventArgs e) => _inputState.SetKeyState(e.Code, true);
+    private void OnKeyUp(KeyboardEventArgs e) => _inputState.SetKeyState(e.Code, false);
+
+    void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
+    {
+        var now = DateTime.Now;
+        double dt = (now - _lastTime).TotalSeconds;
+        _lastTime = now;
+        
+        _gameWorld.Update(dt);
+        
+        var skiaCanvas = new SkiaCanvas(e.Surface.Canvas);
+        e.Surface.Canvas.Clear(SKColors.DimGray);
+        _gameWorld.Draw(skiaCanvas);
+    }
+}

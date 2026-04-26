@@ -1,0 +1,173 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0/win-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {},
+    ".NETCoreApp,Version=v10.0/win-x64": {
+      "RaylibApp/1.0.0": {
+        "dependencies": {
+          "KYLib": "1.0.0",
+          "Raylib-cs": "7.0.2",
+          "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "10.0.5"
+        },
+        "runtime": {
+          "RaylibApp.dll": {}
+        }
+      },
+      "runtimepack.Microsoft.NETCore.App.Runtime.win-x64/10.0.5": {
+        "runtime": {
+          "System.Collections.Concurrent.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Collections.Immutable.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Collections.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Console.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Diagnostics.DiagnosticSource.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Diagnostics.StackTrace.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.IO.Compression.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.IO.MemoryMappedFiles.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Linq.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Private.CoreLib.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Reflection.Metadata.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          },
+          "System.Security.Cryptography.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.526.15411"
+          }
+        },
+        "native": {
+          "Microsoft.DiaSymReader.Native.amd64.dll": {
+            "fileVersion": "14.40.33810.0"
+          },
+          "System.IO.Compression.Native.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "clretwrc.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "clrgc.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "clrgcexp.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "clrjit.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "coreclr.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "createdump.exe": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "hostfxr.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "hostpolicy.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "mscordaccore.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "mscordaccore_amd64_amd64_10.0.526.15411.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "mscordbi.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "mscorrc.dll": {
+            "fileVersion": "10.0.526.15411"
+          },
+          "msquic.dll": {
+            "fileVersion": "2.4.16.0"
+          }
+        }
+      },
+      "Raylib-cs/7.0.2": {
+        "runtime": {
+          "lib/net8.0/Raylib-cs.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "native": {
+          "runtimes/win-x64/native/raylib.dll": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "KYLib/1.0.0": {
+        "runtime": {
+          "KYLib.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RaylibApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "runtimepack.Microsoft.NETCore.App.Runtime.win-x64/10.0.5": {
+      "type": "runtimepack",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Raylib-cs/7.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tpisH03Z9AfdTKFTe7iIA7RNeSaQFE97A+7ApXJUaOHzg2hczBXA1J/2uF7teKHsVXSuGqoV2aHAbaeJJMqulw==",
+      "path": "raylib-cs/7.0.2",
+      "hashPath": "raylib-cs.7.0.2.nupkg.sha512"
+    },
+    "KYLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  },
+  "runtimes": {
+    "win-x64": [
+      "win",
+      "any",
+      "base"
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+﻿using Raylib_cs;
+using KYLib.GameObjectLib.GameComponents;
+
+namespace ConsoleApp.Helpers;
+
+public static class RayLibColorMapper
+{
+    private static readonly Dictionary<GameColor, Color> ColorMap = new()
+    {
+        // Grayscale
+        { GameColor.White, Color.White },
+        { GameColor.Black, Color.Black },
+        { GameColor.Gray, Color.Gray },
+        { GameColor.DarkGray, new Color(40, 40, 40, 255) },
+        { GameColor.LightGray, Color.LightGray },
+        { GameColor.Silver, new Color(192, 192, 192, 255) },
+        { GameColor.Slate, new Color(112, 128, 144, 255) },
+        { GameColor.Charcoal, new Color(54, 69, 79, 255) },
+        { GameColor.Smoke, new Color(115, 130, 118, 255) },
+        { GameColor.Iron, new Color(72, 73, 72, 255) },
+        { GameColor.Coal, new Color(10, 10, 10, 255) },
+        { GameColor.Obsidian, new Color(11, 12, 16, 255) },
+        { GameColor.Snow, new Color(255, 250, 250, 255) },
+        { GameColor.Ivory, new Color(255, 255, 240, 255) },
+        { GameColor.Pearl, new Color(240, 234, 214, 255) },
+        { GameColor.Ash, new Color(178, 190, 181, 255) },
+
+        // Reds
+        { GameColor.Red, Color.Red },
+        { GameColor.Crimson, new Color(220, 20, 60, 255) },
+        { GameColor.Maroon, Color.Maroon },
+        { GameColor.Rose, new Color(255, 0, 127, 255) },
+        { GameColor.Coral, new Color(255, 127, 80, 255) },
+        { GameColor.Salmon, new Color(250, 128, 114, 255) },
+        { GameColor.Scarlet, new Color(255, 36, 0, 255) },
+        { GameColor.Ruby, new Color(224, 17, 95, 255) },
+        { GameColor.Cherry, new Color(222, 49, 99, 255) },
+        { GameColor.Wine, new Color(114, 47, 55, 255) },
+        { GameColor.Pink, Color.Pink },
+        { GameColor.HotPink, new Color(255, 105, 180, 255) },
+        { GameColor.DeepPink, new Color(255, 20, 147, 255) },
+        { GameColor.Raspberry, new Color(227, 11, 92, 255) },
+        { GameColor.Burgundy, new Color(128, 0, 32, 255) },
+        { GameColor.Blood, new Color(138, 3, 3, 255) },
+
+        // Oranges/Browns
+        { GameColor.Orange, Color.Orange },
+        { GameColor.DarkOrange, new Color(255, 140, 0, 255) },
+        { GameColor.Gold, Color.Gold },
+        { GameColor.Amber, new Color(255, 191, 0, 255) },
+        { GameColor.Bronze, new Color(205, 127, 50, 255) },
+        { GameColor.Copper, new Color(184, 115, 51, 255) },
+        { GameColor.Rust, new Color(183, 65, 14, 255) },
+        { GameColor.Sienna, new Color(160, 82, 45, 255) },
+        { GameColor.Chocolate, new Color(210, 105, 30, 255) },
+        { GameColor.SaddleBrown, new Color(139, 69, 19, 255) },
+        { GameColor.Sand, new Color(194, 178, 128, 255) },
+        { GameColor.Tan, new Color(210, 180, 140, 255) },
+        { GameColor.Beige, Color.Beige },
+        { GameColor.Peach, new Color(255, 218, 185, 255) },
+        { GameColor.Apricot, new Color(251, 206, 177, 255) },
+        { GameColor.Ochre, new Color(204, 119, 34, 255) },
+
+        // Yellows/Greens
+        { GameColor.Yellow, Color.Yellow },
+        { GameColor.Lemon, new Color(255, 247, 0, 255) },
+        { GameColor.Khaki, new Color(240, 230, 140, 255) },
+        { GameColor.Olive, new Color(128, 128, 0, 255) },
+        { GameColor.Lime, Color.Lime },
+        { GameColor.Green, Color.Green },
+        { GameColor.Emerald, new Color(80, 200, 120, 255) },
+        { GameColor.Forest, Color.DarkGreen },
+        { GameColor.DarkGreen, new Color(0, 50, 0, 255) },
+        { GameColor.SeaGreen, new Color(46, 139, 87, 255) },
+        { GameColor.Mint, new Color(189, 252, 201, 255) },
+        { GameColor.PastelGreen, new Color(119, 221, 119, 255) },
+        { GameColor.Moss, new Color(138, 154, 91, 255) },
+        { GameColor.OliveDrab, new Color(107, 142, 35, 255) },
+        { GameColor.Chartreuse, new Color(127, 255, 0, 255) },
+        { GameColor.Fern, new Color(79, 121, 66, 255) },
+
+        // Blues/Cyans
+        { GameColor.Blue, Color.Blue },
+        { GameColor.Navy, new Color(0, 0, 128, 255) },
+        { GameColor.RoyalBlue, new Color(65, 105, 225, 255) },
+        { GameColor.SkyBlue, Color.SkyBlue },
+        { GameColor.DeepSkyBlue, new Color(0, 191, 255, 255) },
+        { GameColor.Azure, new Color(0, 127, 255, 255) },
+        { GameColor.Cyan, new Color(0, 255, 255, 255) },
+        { GameColor.Teal, new Color(0, 128, 128, 255) },
+        { GameColor.Turquoise, new Color(64, 224, 208, 255) },
+        { GameColor.Aquamarine, new Color(127, 255, 212, 255) },
+        { GameColor.MidnightBlue, new Color(25, 25, 112, 255) },
+        { GameColor.SteelBlue, new Color(70, 130, 180, 255) },
+        { GameColor.Cornflower, new Color(100, 149, 237, 255) },
+        { GameColor.Cobalt, new Color(0, 71, 171, 255) },
+        { GameColor.Indigo, new Color(75, 0, 130, 255) },
+        { GameColor.Ice, new Color(240, 248, 255, 255) },
+
+        // Purples
+        { GameColor.Purple, Color.Purple },
+        { GameColor.Violet, Color.Violet },
+        { GameColor.Magenta, Color.Magenta },
+        { GameColor.Fuchsia, new Color(255, 0, 255, 255) },
+        { GameColor.Orchid, new Color(218, 112, 214, 255) },
+        { GameColor.Lavender, new Color(230, 230, 250, 255) },
+        { GameColor.Plum, new Color(221, 160, 221, 255) },
+        { GameColor.Mauve, new Color(224, 176, 255, 255) },
+        { GameColor.Thistle, new Color(216, 191, 216, 255) },
+        { GameColor.Amethyst, new Color(153, 102, 204, 255) },
+        { GameColor.Grape, new Color(111, 45, 189, 255) },
+        { GameColor.Periwinkle, new Color(204, 204, 255, 255) },
+        { GameColor.Eggplant, new Color(49, 20, 50, 255) },
+        { GameColor.Lilac, new Color(200, 162, 200, 255) },
+        { GameColor.Iris, new Color(93, 63, 211, 255) },
+        { GameColor.DeepPurple, new Color(48, 25, 52, 255) },
+
+        // Neons
+        { GameColor.NeonRed, new Color(255, 0, 63, 255) },
+        { GameColor.NeonOrange, new Color(255, 95, 31, 255) },
+        { GameColor.NeonYellow, new Color(255, 255, 51, 255) },
+        { GameColor.NeonGreen, new Color(57, 255, 20, 255) },
+        { GameColor.NeonBlue, new Color(0, 255, 255, 255) },
+        { GameColor.NeonCyan, new Color(0, 255, 239, 255) },
+        { GameColor.NeonPink, new Color(255, 0, 255, 255) },
+        { GameColor.NeonPurple, new Color(188, 19, 254, 255) },
+        { GameColor.LaserLemon, new Color(255, 255, 102, 255) },
+        { GameColor.ElectricLime, new Color(204, 255, 0, 255) },
+        { GameColor.Radioactive, new Color(191, 255, 0, 255) },
+        { GameColor.Plasma, new Color(148, 0, 211, 255) },
+        { GameColor.CyberBlue, new Color(0, 206, 209, 255) },
+        { GameColor.Synthwave, new Color(255, 0, 255, 255) },
+        { GameColor.Glitch, new Color(0, 255, 0, 255) },
+        { GameColor.HighViz, new Color(223, 255, 0, 255) },
+
+        // Nature
+        { GameColor.Sky, new Color(135, 206, 235, 255) },
+        { GameColor.Cloud, new Color(236, 240, 241, 255) },
+        { GameColor.Water, new Color(33, 150, 243, 255) },
+        { GameColor.Leaf, new Color(76, 175, 80, 255) },
+        { GameColor.Dirt, new Color(121, 85, 72, 255) },
+        { GameColor.Stone, new Color(158, 158, 158, 255) },
+        { GameColor.Bark, new Color(93, 64, 55, 255) },
+        { GameColor.Clay, new Color(188, 133, 113, 255) },
+        { GameColor.Sunset, new Color(253, 94, 83, 255) },
+        { GameColor.Twilight, new Color(62, 80, 180, 255) },
+        { GameColor.Dawn, new Color(255, 145, 164, 255) },
+        { GameColor.Midnight, new Color(12, 12, 26, 255) },
+        { GameColor.Jungle, new Color(41, 105, 56, 255) },
+        { GameColor.Desert, new Color(237, 201, 175, 255) },
+        { GameColor.Tundra, new Color(188, 212, 230, 255) },
+        { GameColor.Canyon, new Color(160, 100, 75, 255) }
+    };
+    
+    public static Color ToRaylib(this GameColor color) 
+        => ColorMap.TryGetValue(color, out var rayColor) ? rayColor : Color.White;
+}
