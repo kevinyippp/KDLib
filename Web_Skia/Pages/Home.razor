@@ -14,7 +14,8 @@
 @code {
     private GameWorld _gameWorld;
     private readonly BlazorInputState _inputState = new();
-    private DateTime _lastTime = DateTime.Now;
+    private DateTime? _lastTime = DateTime.Now;
+    private const double MAX_DELTA_TIME = 1.0 / 15.0;
 
     protected override void OnInitialized()
     {
@@ -29,10 +30,17 @@
     void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
     {
         var now = DateTime.Now;
-        double dt = (now - _lastTime).TotalSeconds;
-        _lastTime = now;
         
-        _gameWorld.Update(dt);
+        if (!_lastTime.HasValue)
+        {
+            _lastTime = now;
+            return;
+        }
+        
+        double dt = (now - _lastTime.Value).TotalSeconds;
+        _lastTime = now;
+        double clampedDt = Math.Min(dt, MAX_DELTA_TIME);
+        _gameWorld.Update(clampedDt);
         
         var skiaCanvas = new SkiaCanvas(e.Surface.Canvas);
         e.Surface.Canvas.Clear(SKColors.DimGray);

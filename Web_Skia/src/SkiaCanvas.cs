@@ -1,20 +1,10 @@
 ﻿using System.Numerics;
+using BlazorApp;
 using ConsoleApp;
 using KYLib.GameObjectLib;
 using KYLib.GameObjectLib.GameComponents;
 using KYLib.GameObjectModel;
 using SkiaSharp;
-
-public static class SkiaColorExtensions
-{
-    public static SKColor ToSkia(this GameColor color) => color switch
-    {
-        GameColor.Cyan => SKColors.Cyan,
-        GameColor.Red => SKColors.Red,
-        GameColor.DarkGray => SKColor.Parse("#1E1E1E"),
-        _ => SKColors.White
-    };
-}
 
 public class SkiaCanvas : ICanvas
 {
@@ -28,7 +18,20 @@ public class SkiaCanvas : ICanvas
 
     public void DrawTriangle(Vector2 v1, Vector2 v2, Vector2 v3, GameColor color)
     {
-        // throw new NotImplementedException();
+        var paint = new SKPaint
+        {
+            Color = color.ToSkia(),
+            Style = SKPaintStyle.Fill,
+            IsAntialias = true
+        };
+
+        using var path = new SKPath();
+        path.MoveTo(v1.X, v1.Y);
+        path.LineTo(v2.X, v2.Y);
+        path.LineTo(v3.X, v3.Y);
+        path.Close();
+
+        _canvas.DrawPath(path, paint);
     }
 
     public void DrawCircle(float radius, GameColor color, Vector2 position)
@@ -44,8 +47,22 @@ public class SkiaCanvas : ICanvas
 
     public void DrawLine(Vector2 p1, Vector2 p2, float thickness, GameColor color)
     {
-        // throw new NotImplementedException();
+        using var paint = new SKPaint
+        {
+            Color = color.ToSkia(),
+            StrokeWidth = thickness,
+            Style = SKPaintStyle.Stroke,
+            IsAntialias = true
+        };
+
+        _canvas.DrawLine(p1.X, p1.Y, p2.X, p2.Y, paint);
     }
 
-    public void DrawSprite(ISprite sprite, Vector2 position) { /* Implement for Skia */ }
+    public void DrawSprite(ISprite sprite, Vector2 position)
+    {
+        if (sprite is SkiaSprite skSprite)
+        {
+            _canvas.DrawBitmap(skSprite.Bitmap, position.X, position.Y);
+        }
+    }
 }

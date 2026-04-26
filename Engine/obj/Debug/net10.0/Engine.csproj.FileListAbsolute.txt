@@ -9,3 +9,4 @@ C:\Users\kevin\Documents\My Codes\GameDev\KDLib\Engine\obj\Debug\net10.0\Engine.
 C:\Users\kevin\Documents\My Codes\GameDev\KDLib\Engine\obj\Debug\net10.0\refint\Engine.dll
 C:\Users\kevin\Documents\My Codes\GameDev\KDLib\Engine\obj\Debug\net10.0\Engine.pdb
 C:\Users\kevin\Documents\My Codes\GameDev\KDLib\Engine\obj\Debug\net10.0\ref\Engine.dll
+C:\Users\kevin\Documents\My Codes\GameDev\KDLib\Engine\obj\Debug\net10.0\Engine.sourcelink.json

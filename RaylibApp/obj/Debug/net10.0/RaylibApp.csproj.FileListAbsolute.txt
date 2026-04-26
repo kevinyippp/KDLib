@@ -47,3 +47,4 @@ C:\Users\kevin\Documents\My Codes\GameDev\KDLib\RaylibApp\obj\Debug\net10.0\refi
 C:\Users\kevin\Documents\My Codes\GameDev\KDLib\RaylibApp\obj\Debug\net10.0\RaylibApp.pdb
 C:\Users\kevin\Documents\My Codes\GameDev\KDLib\RaylibApp\obj\Debug\net10.0\RaylibApp.genruntimeconfig.cache
 C:\Users\kevin\Documents\My Codes\GameDev\KDLib\RaylibApp\obj\Debug\net10.0\ref\RaylibApp.dll
+C:\Users\kevin\Documents\My Codes\GameDev\KDLib\RaylibApp\obj\Debug\net10.0\RaylibApp.sourcelink.json
