@@ -1,7 +1,6 @@
 ﻿using System.Numerics;
-using KYLib.GameObjectLib;
 
-namespace KYLib.GameObjectModel;
+namespace KDLib.GameObjectModel;
 
 public sealed class GameObject
 {
@@ -20,6 +19,7 @@ public sealed class GameObject
         foreach (var component in gameComponents ) {
             component.GameObject = this;
             _gameComponents.Add(component);
+            component.OnAdded();
         }
     }
 

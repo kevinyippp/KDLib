@@ -1,4 +1,4 @@
-﻿namespace KYLib;
+﻿namespace KDLib;
 
 public enum KeyboardButton
 {

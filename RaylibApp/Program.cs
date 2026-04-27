@@ -1,12 +1,12 @@
 ﻿using ConsoleApp;
 using ConsoleApp.GameComponents;
-using KYLib;
-using KYLib.GameObjectModel;
+using KDLib;
+using KDLib.GameObjectModel;
 
 KDEngine.Input = new RaylibInputState();
-var gameWorld = new GameWorld(1280, 720, "KYLib Raylib");
+KDEngine.AssetManager = new RaylibAssetManager();
 
-GameScene.Load(gameWorld);
-
+var gameWorld = new GameWorld(1280, 720, "KDLib Raylib");
 var worldRunner = new RaylibWorldRunner(gameWorld);
+GameScene.Load(gameWorld);
 worldRunner.Run();

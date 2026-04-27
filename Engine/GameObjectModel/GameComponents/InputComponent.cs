@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
-using KYLib.GameObjectLib;
+using KDLib.GameObjectLib;
 
-namespace KYLib.GameObjectModel.GameComponents;
+namespace KDLib.GameObjectModel.GameComponents;
 
 public interface IInputState
 {
@@ -10,7 +10,7 @@ public interface IInputState
 
 public class InputComponent : GameComponent
 {
-    public int Speed = 200;
+    public int Speed = 400;
     
     private readonly IInputState _inputState;
 

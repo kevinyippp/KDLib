@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using KYLib;
-using KYLib.GameObjectLib.GameComponents;
-using KYLib.GameObjectModel.GameComponents;
+using KDLib;
+using KDLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectModel.GameComponents;
 
 namespace BlazorApp;
 

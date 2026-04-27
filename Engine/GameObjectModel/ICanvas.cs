@@ -1,8 +1,8 @@
 ﻿using System.Numerics;
 using ConsoleApp;
-using KYLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectLib.GameComponents;
 
-namespace KYLib.GameObjectModel;
+namespace KDLib.GameObjectModel;
 
 public interface ICanvas
 {

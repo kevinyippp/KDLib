@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace KYLib.GameObjectModel.GameComponents;
+namespace KDLib.GameObjectModel.GameComponents;
 
 public class AgentComponent : GameComponent
 {

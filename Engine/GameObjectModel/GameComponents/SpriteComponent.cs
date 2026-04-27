@@ -1,8 +1,7 @@
 ﻿using System.Numerics;
 using ConsoleApp;
-using KYLib.GameObjectLib;
 
-namespace KYLib.GameObjectModel.GameComponents;
+namespace KDLib.GameObjectModel.GameComponents;
 
 public class SpriteComponent : GameComponent
 {

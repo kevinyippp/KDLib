@@ -1,8 +1,8 @@
-﻿using KYLib.GameObjectLib;
-using KYLib.GameObjectLib.GameComponents;
-using KYLib.GameObjectModel.GameComponents;
+﻿using KDLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectModel.GameComponents;
+using KDLib.GameObjectLib;
 
-namespace KYLib.GameObjectModel;
+namespace KDLib.GameObjectModel;
 
 public static class Factory
 {

@@ -1,8 +1,8 @@
 ﻿using System.Numerics;
-using KYLib.GameObjectLib;
-using KYLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectLib;
 
-namespace KYLib.GameObjectModel.GameComponents;
+namespace KDLib.GameObjectModel.GameComponents;
 
 public enum ShapeType { Circle, Square, Triangle }
 

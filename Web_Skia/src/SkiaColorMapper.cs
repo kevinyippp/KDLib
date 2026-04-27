@@ -1,4 +1,4 @@
-﻿using KYLib.GameObjectLib.GameComponents;
+﻿using KDLib.GameObjectLib.GameComponents;
 using SkiaSharp;
 
 namespace BlazorApp;

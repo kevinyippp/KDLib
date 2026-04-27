@@ -1,10 +1,10 @@
 ﻿using System.Numerics;
-using KYLib.GameObjectLib.GameComponents;
-using KYLib.GameObjectModel;
-using KYLib.GameObjectModel.GameComponents;
+using KDLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectModel;
+using KDLib.GameObjectModel.GameComponents;
 using Utils;
 
-namespace KYLib;
+namespace KDLib;
 
 public static class GameScene
 {
@@ -29,6 +29,23 @@ public static class GameScene
         world.GameObjects.AddRange(nodes);
         world.GameObjects.AddRange(label);
         world.GameObjects.Add(CreateAgent(nodes) );
+
+        var snake = new GameObject("snake");
+        snake.AddComponent( new SpriteComponent(KDEngine.AssetManager.LoadSprite("Assets/DinoSprites.png")));
+        var snakeComponent = new SnakeComponent();
+        snake.AddComponent(snakeComponent);
+        snake.AddComponent(new InputComponent(KDEngine.Input));
+        snake.AddComponent(new ShapeComponent(ShapeType.Square, 24f, GameColor.Amethyst));
+        
+        world.GameObjects.Add(snake);
+
+        for (int i = 0; i < 10; ++i)
+        {
+            var segment = new GameObject("segment");
+            segment.AddComponent(new ShapeComponent(ShapeType.Square));
+            snakeComponent.AddSegment(segment);
+            world.GameObjects.Add(segment);
+        }
         
         world.OnDraw += canvas => {
             for (int i = 0; i < nodes.Count - 1; ++i) {

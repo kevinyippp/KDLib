@@ -1,9 +1,9 @@
 ﻿using System.Numerics;
-using KYLib.GameObjectLib;
+using KDLib.GameObjectLib;
 using Raylib_cs;
 using ConsoleApp.Helpers;
-using KYLib.GameObjectLib.GameComponents;
-using KYLib.GameObjectModel;
+using KDLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectModel;
 
 namespace ConsoleApp;
 

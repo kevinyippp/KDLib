@@ -1,4 +1,4 @@
-﻿namespace KYLib.GameObjectLib.GameComponents;
+﻿namespace KDLib.GameObjectLib.GameComponents;
 
 public enum GameColor 
 { 

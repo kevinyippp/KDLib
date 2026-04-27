@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace KYLib;
+namespace KDLib;
 
 public static class Vector2Extensions
 {

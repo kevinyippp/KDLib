@@ -1,7 +1,6 @@
 ﻿using System.Numerics;
-using KYLib.GameObjectLib;
 
-namespace KYLib.GameObjectModel.GameComponents;
+namespace KDLib.GameObjectModel.GameComponents;
 
 public class SnakeComponent : GameComponent
 {
@@ -12,6 +11,7 @@ public class SnakeComponent : GameComponent
     // LinkedList allows O(1) AddFirst / RemoveLast instead of O(m) Insert(0,...)
     private readonly LinkedList<Vector2> _trail = new();
 
+
     public void AddSegment(GameObject gameObject)
     {
         if (_segments.Count == 0 && _trail.Count == 0)
@@ -21,6 +21,11 @@ public class SnakeComponent : GameComponent
             gameObject.Position = _segments[^1].Position;
 
         _segments.Add(gameObject);
+    }
+
+    public override void OnAdded()
+    {
+        AddSegment(this.GameObject);
     }
 
     public override void Update(double dt)

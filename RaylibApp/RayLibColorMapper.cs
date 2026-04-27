@@ -1,5 +1,5 @@
 ﻿using Raylib_cs;
-using KYLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectLib.GameComponents;
 
 namespace ConsoleApp.Helpers;
 

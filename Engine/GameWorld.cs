@@ -1,9 +1,9 @@
 ﻿using System.Numerics;
-using KYLib.GameObjectLib;
-using KYLib.GameObjectModel;
-using KYLib.GameObjectModel.GameComponents;
+using KDLib.GameObjectModel;
+using KDLib.GameObjectModel.GameComponents;
+using KDLib.GameObjectLib;
 
-namespace KYLib;
+namespace KDLib;
 
 public class GameWorld : IUpdatable
 {
@@ -21,6 +21,19 @@ public class GameWorld : IUpdatable
         Height = height;
         Title = title;
     }
+
+    private void StartComponents()
+    {
+        foreach (var obj in GameObjects) {
+            foreach (var comp in obj.Components) {
+                if (!comp.HasStarted) {
+                    comp.Start();
+                    comp.HasStarted = true;
+                }
+            }
+        }
+    }
+    
     private void UpdateCollisions()
     {
         var collisions = GameObjects
@@ -64,9 +77,9 @@ public class GameWorld : IUpdatable
     private void RaiseOnUpdate(double dt) => OnUpdate?.Invoke(dt);
     private void RaiseOnDraw(ICanvas canvas) => OnDraw?.Invoke(canvas);
     
-
     public void Update(double dt)
     {
+        StartComponents();
         RaiseOnUpdate(dt);
         foreach (var obj in GameObjects) {
             obj.UpdateComponents(dt);

@@ -1,9 +1,9 @@
 ﻿using System.Numerics;
 using BlazorApp;
 using ConsoleApp;
-using KYLib.GameObjectLib;
-using KYLib.GameObjectLib.GameComponents;
-using KYLib.GameObjectModel;
+using KDLib.GameObjectLib;
+using KDLib.GameObjectLib.GameComponents;
+using KDLib.GameObjectModel;
 using SkiaSharp;
 
 public class SkiaCanvas : ICanvas

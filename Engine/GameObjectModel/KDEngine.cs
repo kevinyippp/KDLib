@@ -1,8 +1,10 @@
-﻿using KYLib.GameObjectModel.GameComponents;
+﻿using Engine.GameObjectModel;
+using KDLib.GameObjectModel.GameComponents;
 
-namespace KYLib.GameObjectModel;
+namespace KDLib.GameObjectModel;
 
 public static class KDEngine
 {
-    public static IInputState Input;
+    public static IInputState Input { get; set; } = null;
+    public static IAssetManager AssetManager { get; set; } = null;
 }
