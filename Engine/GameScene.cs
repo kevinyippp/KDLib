@@ -31,7 +31,6 @@ public static class GameScene
         world.GameObjects.Add(CreateAgent(nodes) );
 
         var snake = new GameObject("snake");
-        snake.AddComponent( new SpriteComponent(KDEngine.AssetManager.LoadSprite("Assets/DinoSprites.png")));
         var snakeComponent = new SnakeComponent();
         snake.AddComponent(snakeComponent);
         snake.AddComponent(new InputComponent(KDEngine.Input));
