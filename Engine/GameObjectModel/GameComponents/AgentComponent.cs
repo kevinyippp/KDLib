@@ -24,12 +24,12 @@ public class AgentComponent : GameComponent
             _index = (_index + 1) % _nodes.Count;
         }
 
-        Console.WriteLine($"Delta time: {dt}");
+        // Console.WriteLine($"Delta time: {dt}");
         
         if (dt > 1.0f) {
             Thread.Sleep(10000);
         }
         
-        Console.WriteLine(GameObject.Position);
+        // Console.WriteLine(GameObject.Position);
     }
 }

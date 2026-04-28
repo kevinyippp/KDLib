@@ -34,15 +34,54 @@ public class SkiaCanvas : ICanvas
         _canvas.DrawPath(path, paint);
     }
 
+    public void DrawSpriteRegion(ISprite sprite, Vector2 position, SpriteRegion src)
+    {
+        if (sprite is SkiaSprite ss)
+        {
+            var source = new SKRect(src.StartPosition.X, src.StartPosition.Y, src.StartPosition.X + src.Size.X, src.StartPosition.Y + src.Size.Y);
+            
+            var dest = new SKRect(
+                position.X,
+                position.Y,
+                position.X + src.Size.X * sprite.Scale.X, 
+                position.Y + src.Size.Y * sprite.Scale.Y
+            );
+
+            _canvas.Save();
+
+            if (src.FlipX)
+            {
+                _canvas.Scale(-1, 1, dest.MidX, dest.MidY);
+            }
+            if (src.FlipY)
+            {
+                _canvas.Scale(1, -1, dest.MidX, dest.MidY);
+            }
+
+            _canvas.DrawBitmap(ss.Bitmap, source, dest);
+            _canvas.Restore();
+        }
+    }
+    
     public void DrawCircle(float radius, GameColor color, Vector2 position)
     {
         using var paint = new SKPaint { Color = color.ToSkia(), IsAntialias = true };
         _canvas.DrawCircle(position.X, position.Y, radius, paint);
     }
+    
     public void DrawText(string text, int fontSize, GameColor color, Vector2 position)
     {
-        using var paint = new SKPaint { Color = color.ToSkia(), TextSize = fontSize, IsAntialias = true };
-        _canvas.DrawText(text, position.X, position.Y, paint);
+        using var paint = new SKPaint 
+        { 
+            Color = color.ToSkia(), 
+            IsAntialias = true 
+        };
+        
+        using var font = new SKFont { 
+            Size = fontSize 
+        };
+
+        _canvas.DrawText(text, position.X, position.Y, font, paint);
     }
 
     public void DrawLine(Vector2 p1, Vector2 p2, float thickness, GameColor color)
@@ -56,13 +95,5 @@ public class SkiaCanvas : ICanvas
         };
 
         _canvas.DrawLine(p1.X, p1.Y, p2.X, p2.Y, paint);
-    }
-
-    public void DrawSprite(ISprite sprite, Vector2 position)
-    {
-        if (sprite is SkiaSprite skSprite)
-        {
-            _canvas.DrawBitmap(skSprite.Bitmap, position.X, position.Y);
-        }
     }
 }

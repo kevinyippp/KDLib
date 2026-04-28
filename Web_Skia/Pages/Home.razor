@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject HttpClient Http
 @using BlazorApp
 @using KDLib
 @using KDLib.GameObjectModel
@@ -12,38 +13,43 @@
 </div>
 
 @code {
-    private GameWorld _gameWorld;
+    private GameWorld? _gameWorld;
     private readonly BlazorInputState _inputState = new();
-    private DateTime? _lastTime = DateTime.Now;
+    private DateTime? _lastTime;
+    private bool _isLoaded = false;
     private const double MAX_DELTA_TIME = 1.0 / 15.0;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         KDEngine.Input = _inputState;
-        _gameWorld = new GameWorld(1280, 720, "KYLib Blazor");
-        GameScene.Load(_gameWorld);
-    }
+        
+        var manager = new SkiaAssetManager();
 
-    private void OnKeyDown(KeyboardEventArgs e) => _inputState.SetKeyState(e.Code, true);
-    private void OnKeyUp(KeyboardEventArgs e) => _inputState.SetKeyState(e.Code, false);
+        await manager.PreWarmAsync(Http, ["Assets/DinoSprites.png"]);
+        
+        KDEngine.AssetManager = manager;
+        _gameWorld = new GameWorld(1280, 720, "KYLib Blazor");
+        
+        GameScene.Load(_gameWorld); 
+        
+        _lastTime = DateTime.Now;
+        _isLoaded = true;
+    }
 
     void OnPaintSurface(SKPaintGLSurfaceEventArgs e)
     {
+        if (!_isLoaded || _gameWorld == null || !_lastTime.HasValue) return;
+
         var now = DateTime.Now;
-        
-        if (!_lastTime.HasValue)
-        {
-            _lastTime = now;
-            return;
-        }
-        
         double dt = (now - _lastTime.Value).TotalSeconds;
         _lastTime = now;
-        double clampedDt = Math.Min(dt, MAX_DELTA_TIME);
-        _gameWorld.Update(clampedDt);
+        
+        _gameWorld.Update(Math.Min(dt, MAX_DELTA_TIME));
         
         var skiaCanvas = new SkiaCanvas(e.Surface.Canvas);
         e.Surface.Canvas.Clear(SKColors.DimGray);
         _gameWorld.Draw(skiaCanvas);
     }
+    private void OnKeyDown(KeyboardEventArgs e) => _inputState.SetKeyState(e.Code, true);
+    private void OnKeyUp(KeyboardEventArgs e) => _inputState.SetKeyState(e.Code, false);
 }

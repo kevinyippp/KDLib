@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Engine.GameObjectModel.GameComponents;
 using KDLib.GameObjectLib.GameComponents;
 using KDLib.GameObjectModel;
 using KDLib.GameObjectModel.GameComponents;
@@ -18,7 +19,7 @@ public static class GameScene
         ];
         
         var label = new GameObject("keyboard_label") {
-            Position = new Vector2(980, 680)
+            Position = new Vector2(32, 680)
         };
 
         label.AddComponent(new TextComponent() {
@@ -30,21 +31,9 @@ public static class GameScene
         world.GameObjects.AddRange(label);
         world.GameObjects.Add(CreateAgent(nodes) );
 
-        var snake = new GameObject("snake");
-        var snakeComponent = new SnakeComponent();
-        snake.AddComponent(snakeComponent);
-        snake.AddComponent(new InputComponent(KDEngine.Input));
-        snake.AddComponent(new ShapeComponent(ShapeType.Square, 24f, GameColor.Amethyst));
-        
-        world.GameObjects.Add(snake);
+        var character = CreateCharacter();
+        world.GameObjects.Add(character);
 
-        for (int i = 0; i < 10; ++i)
-        {
-            var segment = new GameObject("segment");
-            segment.AddComponent(new ShapeComponent(ShapeType.Square));
-            snakeComponent.AddSegment(segment);
-            world.GameObjects.Add(segment);
-        }
         
         world.OnDraw += canvas => {
             for (int i = 0; i < nodes.Count - 1; ++i) {
@@ -71,7 +60,7 @@ public static class GameScene
             Offset = new Vector2(0, -8)
         });
         agent.AddComponent(new ShapeComponent(ShapeType.Circle,8, GameColor.Cyan) {
-            Offset = new Vector2(0, -18)
+            Offset = new Vector2(0, -24)
         });
 
         agent.AddComponent( new AgentComponent(nodes));
@@ -80,6 +69,33 @@ public static class GameScene
         Console.WriteLine($"Agent position set to {agent.Position}");
         return agent;
     }
+
+    private static GameObject CreateCharacter()
+    {
+        var character = new GameObject("dino") {
+            Position = new Vector2(100, 100)
+        };
+        
+        character.AddComponent(new InputComponent(KDEngine.Input));
+        character.AddComponent(new VelocityComponent());
+        character.AddComponent(new ShapeComponent(ShapeType.Square, 24f, GameColor.Amethyst));
+        character.AddComponent(new SpriteComponent(KDEngine.AssetManager.LoadSprite("Assets/DinoSprites.png")));
+        character.AddComponent(new TextComponent());
+        
+        
+        
+        var sprite = character.GetComponent<SpriteComponent>();
+        sprite.Sprite.Scale = new Vector2(8, 8);
+        sprite.HorizontalFrame = 24;
+        sprite.VerticalFrame = 1;
+        
+        character.AddComponent(new LogicComponent());
+        
+        Console.WriteLine($"Sprite size: {sprite.FrameSize}");
+
+        return character;
+    }
+    
     private static void DrawEdge(Vector2 p1, Vector2 p2, ICanvas canvas) {
         canvas.DrawLine(p1, p2, 4.0f, GameColor.Gray);
     }

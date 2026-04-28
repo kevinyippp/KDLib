@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using System.Numerics;
+using Raylib_cs;
 
 namespace ConsoleApp;
 
@@ -8,6 +9,7 @@ public class RaylibSprite : ISprite
     public string Id { get; init; }
     public int Width => Texture.Width;
     public int Height => Texture.Height;
+    public Vector2 Scale { get; set; } = Vector2.One;
 
     public RaylibSprite(string id, Texture2D texture)
     {

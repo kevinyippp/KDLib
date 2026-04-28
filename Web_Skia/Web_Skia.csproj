@@ -16,7 +16,16 @@
         <GenerateStaticWebAssetsManifest>true</GenerateStaticWebAssetsManifest>
         <StaticWebAssetProjectMode>Root</StaticWebAssetProjectMode>
     </PropertyGroup>
-    
+
+    <Target Name="CopyEngineAssetsToWwwroot" BeforeTargets="Build">
+        <ItemGroup>
+            <_EngineAssets Include="..\Engine\Assets\**\*.*" />
+        </ItemGroup>
+        <Copy
+                SourceFiles="@(_EngineAssets)"
+                DestinationFiles="@(_EngineAssets->'wwwroot\Assets\%(RecursiveDir)%(FileName)%(Extension)')"
+                SkipUnchangedFiles="true" />
+    </Target>
     
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.5"/>

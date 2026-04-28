@@ -9,10 +9,24 @@ namespace ConsoleApp;
 
 public class RaylibCanvas : ICanvas
 {
-    public void DrawSprite(ISprite sprite, Vector2 position)
+    public void DrawSpriteRegion(ISprite sprite, Vector2 position, SpriteRegion src)
     {
-        if (sprite is RaylibSprite rs)
-            Raylib.DrawTextureV(rs.Texture, position, Color.White);
+        if (sprite is RaylibSprite rs) {
+            var source = new Rectangle(
+                src.StartPosition.X, src.StartPosition.Y,
+                src.FlipX ? -src.Size.X : src.Size.X,
+                src.FlipY ? -src.Size.Y : src.Size.Y
+            );
+            
+            var dest = new Rectangle(
+                position.X, 
+                position.Y,
+                src.Size.X * sprite.Scale.X
+                , src.Size.Y * sprite.Scale.Y
+            );
+            
+            Raylib.DrawTexturePro(rs.Texture, source, dest, Vector2.Zero, 0f, Color.White);
+        }
     }
 
     public void DrawCircle(float radius, GameColor color, Vector2 position) {
