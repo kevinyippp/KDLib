@@ -76,12 +76,13 @@ public class SkiaCanvas : ICanvas
             Color = color.ToSkia(), 
             IsAntialias = true 
         };
+    
+        using var font = new SKFont { Size = fontSize };
         
-        using var font = new SKFont { 
-            Size = fontSize 
-        };
+        var metrics = font.Metrics;
+        float adjustedY = position.Y - metrics.Ascent;
 
-        _canvas.DrawText(text, position.X, position.Y, font, paint);
+        _canvas.DrawText(text, position.X, adjustedY, font, paint);
     }
 
     public void DrawLine(Vector2 p1, Vector2 p2, float thickness, GameColor color)

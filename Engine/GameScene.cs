@@ -73,7 +73,7 @@ public static class GameScene
     private static GameObject CreateCharacter()
     {
         var character = new GameObject("dino") {
-            Position = new Vector2(100, 100)
+            Position = new Vector2(800, 600)
         };
         
         character.AddComponent(new InputComponent(KDEngine.Input));
@@ -82,14 +82,12 @@ public static class GameScene
         character.AddComponent(new SpriteComponent(KDEngine.AssetManager.LoadSprite("Assets/DinoSprites.png")));
         character.AddComponent(new TextComponent());
         
-        
-        
         var sprite = character.GetComponent<SpriteComponent>();
         sprite.Sprite.Scale = new Vector2(8, 8);
         sprite.HorizontalFrame = 24;
         sprite.VerticalFrame = 1;
         
-        character.AddComponent(new LogicComponent());
+        character.AddComponent(new BehaviorComponent());
         
         Console.WriteLine($"Sprite size: {sprite.FrameSize}");
 

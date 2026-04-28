@@ -23,8 +23,8 @@ public sealed class GameObject
         }
     }
 
-    public T GetComponent<T>() where T : GameComponent {
-        return _gameComponents.OfType<T>().First();
+    public T? GetComponent<T>() where T : GameComponent {
+        return _gameComponents.OfType<T>().FirstOrDefault();
     }
     
     public void RemoveComponent(GameComponent gameComponent)

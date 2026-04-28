@@ -5,7 +5,7 @@ using KYLib.FiniteStateMachine;
 
 namespace Engine.GameObjectModel.GameComponents;
 
-public class LogicComponent : GameComponent
+public class BehaviorComponent : GameComponent
 {
     private const float MOVE_SPEED = 240.0f;
     
@@ -84,10 +84,9 @@ public class LogicComponent : GameComponent
         _fsm = new StateMachine<CharacterState>(CharacterState.Walk, stateMap);
 
         var textComponent = GameObject.GetComponent<TextComponent>();
-        textComponent.Offset = new Vector2(-60, -80);
+        textComponent.Offset = new Vector2(-80, -100);
         
         _fsm.StateEntered += state => textComponent.Text = $"State: {state}"; 
-        
         _fsm.Start();
     }
 
