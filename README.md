@@ -1,6 +1,6 @@
 # KDLib — A Portable 2D Game Framework for C# Enjoyers
 
-![KDLib Demo](demo.gif)
+![KDLib Demo](https://raw.githubusercontent.com/kevinyippp/KDLib/main/demo.gif)
 
 Are you a C# enjoyer looking for a lightweight, straightforward game framework that lets you write your game once and play it in the browser — just write C# code and launch your game in the browser, no JS, no TypeScript, no export headache?
 
